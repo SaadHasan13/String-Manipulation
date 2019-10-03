@@ -1,0 +1,32 @@
+DECLARE WordString1 : STRING
+DECLARE WordString2 : STRING
+DECLARE WordString3 : STRING
+DECLARE FirstWord : STRING
+DECLARE LastWord : STRING
+DECLARE Xb : INTEGER
+
+
+WordString1 = " "
+WordString2 = " "
+WordString3 = " "
+FirstWord = " "
+LastWord = " "
+Xb = 0
+
+
+PRINT "Enter 1st string of 2 words: "
+READ WordString 1
+
+
+PRINT "Enter 2nd string of 2 words: "
+READ WordString 2
+
+Xb = LOCATE(WordString1, ' ')
+FirstWord = LEFT(WordString1, Xb -1)
+
+Xb = LOCATE(WordString2, ' ')
+LastWord = RIGHT(WordString2, LENGTH(WordString2) -Xb)
+
+
+WordString3 = FirstWord & ' ' & LastWord
+PRINT WordString3
