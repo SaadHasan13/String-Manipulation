@@ -1,35 +1,60 @@
 ﻿Module Module1
 
     Sub Main()
-        Dim WordString1, WordString2, WordString3, FirstWord, LastWord As String
-        Dim Xb As Integer
+        Dim BinaryStr, NextStr, BinaryStr2, Binary As String
+        Dim Counter, UpcomingNum, Denary As Integer
+        Dim validBinaryStr As Boolean
+      
+        BinaryStr = " "
+        BinaryStr2 = " "
+        NextStr = "01101010"
+        Counter = 0
+        validBinaryStr = True
+        Binary = "01"
+        Denary = 0
+        UpcomingNum = 0
 
-        WordString1 = " "
-        WordString2 = " "
-        WordString3 = " "
-        FirstWord = " "
-        LastWord = " "
-        Xb = 0
+        Console.WriteLine("PLEASE ENTER A BINARY NUMBER: ")
+        BinaryStr = Console.ReadLine
 
-        Console.Write("Enter 1st string of 2 words: ")
-        WordString1 = Console.ReadLine
+        If Len(BinaryStr) >= 8 Then
+            validBinaryStr = True
+            For Counter = 1 To 8
+                If InStr(BinaryStr, Mid(NextStr, Counter, 1)) = 0 Then
+                    validBinaryStr = False 
+                End If
+            Next
+        Else : validBinaryStr = False
 
-        Console.Write("Enter 2nd string of 2 words: ")
-        WordString2 = Console.ReadLine
+        End If
 
-        Xb = InStr(WordString1, " ")
-        FirstWord = Left(WordString1, Xb - 1)
+        If validBinaryStr = False Then
+            Console.WriteLine("The entered string is not a binary number")
+        End If
 
-        Xb = InStr(WordString2, " ")
-        LastWord = Right(WordString2, Len(WordString2) - Xb)
+        If validBinaryStr Then
+            For Counter = 1 To Len(BinaryStr)
+                BinaryStr2 = Mid(BinaryStr, Counter, 1) & BinaryStr2
+                If NextStr = "1" Then
+                    UpcomingNum = 1
+                End If
 
-        WordString3 = FirstWord & " " & LastWord
-        Console.WriteLine(WordString3)
-
+                If Counter = 1 Then
+                    Denary = Denary + UpcomingNum
+                End If
+                If Counter = 2 Then
+                    Denary = Denary + UpcomingNum * 2
+                End If
+                If Counter = 3 Then
+                    Denary = Denary + UpcomingNum * 3
+                End If
+                If Counter = 4 Then
+                    Denary = Denary + UpcomingNum * 4
+                End If
+            Next
+            Console.WriteLine(BinaryStr & " = " & Denary)
+        End If
         Console.ReadKey()
-
-
-
     End Sub
 
 End Module
